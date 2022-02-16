@@ -1,13 +1,24 @@
+import 'dotenv/config';
 import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
 import { TelegrafModule } from 'nestjs-telegraf';
-import { AppUpdate } from './app.update';
+import { DbModule } from './db/db.module';
+import { BotModule } from './bot/bot.module';
+import { BotController } from './bot/bot.controller';
+import { BotService } from './bot/bot.service';
+
+const DB = process.env.DB_URI;
+const TOKEN = process.env.TELEGRAM_API;
 
 @Module({
   imports: [
+    MongooseModule.forRoot(DB),
     TelegrafModule.forRoot({
-      token: '5145218551:AAGYg-E7eBTBmvMGeIIiNXhHI2hShEbrLMw',
+      token: TOKEN,
     }),
+    DbModule,
+    BotModule,
   ],
-  providers: [AppUpdate],
+  providers: [BotService, BotController],
 })
 export class AppModule {}
