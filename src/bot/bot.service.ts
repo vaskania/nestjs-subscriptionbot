@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { UserRepository } from 'src/db/repository/user.repository';
-import { TimeGenerator } from 'src/moment/time-generator.service';
+import { TimeGenerator } from 'src/util/time-generator.service';
 
 @Injectable()
 export class BotService {
