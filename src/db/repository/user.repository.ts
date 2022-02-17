@@ -10,13 +10,23 @@ export class UserRepository {
     private readonly userModel: Model<User>,
   ) {}
 
-  async findChatId(chatId: string) {
-    return this.userModel.find({ chatId });
+  async findByChatId(chatId: string) {
+    return this.userModel.findOne({ chatId });
   }
 
   async addChatId(chatId: string) {
-    return new this.userModel(chatId);
+    const newUserChatId = new this.userModel({ chatId });
+    return newUserChatId.save();
   }
 
-  async setUserLocationToDb() {}
+  async setUserLocationToDb(chatId, userLocation) {
+    await this.userModel.findOneAndUpdate(
+      { chatId },
+      { location: userLocation },
+    );
+  }
+
+  async setUserTime(chatId, schedule) {
+    await this.userModel.findOneAndUpdate({ chatId }, { schedule });
+  }
 }

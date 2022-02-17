@@ -11,9 +11,6 @@ export const UserSchema = new Schema(
         type: Number,
       },
     },
-    timezone: {
-      type: Number,
-    },
     schedule: {
       type: String,
     },
