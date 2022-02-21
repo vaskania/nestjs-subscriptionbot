@@ -29,7 +29,7 @@ export class BotController {
     try {
       await this.botService.setUserTime(ctx);
 
-      await ctx.reply(`Time setted at: ${ctx.update["message"].text}`);
+      await ctx.reply(`Time set at: ${ctx.update["message"].text}`);
     } catch (error) {
       await ctx.reply(error.message);
     }
