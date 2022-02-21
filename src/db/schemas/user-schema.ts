@@ -1,19 +1,18 @@
-import { Schema } from 'mongoose';
+import { Schema } from "mongoose";
 
 export const UserSchema = new Schema(
   {
     chatId: { type: String, required: true },
     location: {
       latitude: {
-        type: Number,
+        type: Number
       },
       longitude: {
-        type: Number,
-      },
+        type: Number
+      }
     },
     schedule: {
-      type: String,
-    },
-  },
-  { timestamps: true },
+      type: String
+    }
+  }
 );

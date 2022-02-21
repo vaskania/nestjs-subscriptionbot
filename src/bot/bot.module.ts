@@ -1,11 +1,12 @@
-import { Module } from '@nestjs/common';
-import { DbModule } from 'src/db/db.module';
-import { BotController } from './bot.controller';
-import { BotService } from './bot.service';
+import { Module } from "@nestjs/common";
+import { DbModule } from "src/db/db.module";
+import { BotController } from "./bot.controller";
+import { BotService } from "./bot.service";
 
 @Module({
   imports: [DbModule],
   controllers: [BotController],
-  providers: [BotService],
+  providers: [BotService]
 })
-export class BotModule {}
+export class BotModule {
+}

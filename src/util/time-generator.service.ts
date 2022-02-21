@@ -1,5 +1,5 @@
-import { find } from 'geo-tz';
-import * as moment from 'moment-timezone';
+import { find } from "geo-tz";
+import * as moment from "moment-timezone";
 
 export class TimeGenerator {
   async generateTime(latitude: number, longtitude: number, userTime: string) {
@@ -7,9 +7,9 @@ export class TimeGenerator {
 
     const date = new Date(moment.tz(timezone).format());
     const userTimezone = date.getTimezoneOffset() / 60;
-    const time = userTime.split(':');
+    const time = userTime.split(":");
 
-    let setTime: number | string = parseInt(time[0]) - userTimezone;
+    let setTime: number | string = parseInt(time[0]) + (userTimezone);
 
     if (setTime < 0) {
       setTime += 12;
@@ -20,6 +20,6 @@ export class TimeGenerator {
     }
 
     time[0] = setTime.toString();
-    return time.join(':');
+    return time.join(":");
   }
 }
