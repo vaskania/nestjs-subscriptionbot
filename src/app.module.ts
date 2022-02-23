@@ -11,12 +11,14 @@ import { TasksService } from "./cron/cron.service";
 import { WeatherModule } from "./forecast/weather.module";
 import { WeatherService } from "./forecast/weather.service";
 import { HttpModule } from "@nestjs/axios";
+import { ConfigModule } from "@nestjs/config";
 
 const DB = process.env.DB_URI;
 const TOKEN = process.env.TELEGRAM_API;
 
 @Module({
   imports: [
+    ConfigModule.forRoot({ isGlobal: true }),
     MongooseModule.forRoot(DB),
     TelegrafModule.forRoot({
       token: TOKEN

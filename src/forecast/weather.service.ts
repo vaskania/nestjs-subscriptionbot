@@ -1,19 +1,21 @@
 import { Injectable } from "@nestjs/common";
 import { HttpService } from "@nestjs/axios";
 import { lastValueFrom, map } from "rxjs";
+import { ConfigService } from "@nestjs/config";
 
-const API = "64f266fb3ffa0f2b1da717bf3720157e";
 
 @Injectable()
 export class WeatherService {
-  constructor(private http: HttpService) {
+  constructor(private http: HttpService, private readonly configService: ConfigService) {
   }
 
-  setUrl = (latitude, longitude) => {
-    return `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API}&units=metric`;
+  setUrl = (location) => {
+    const WEATHER_API = this.configService.get("WEATHER_API");
+    const { latitude, longitude } = location;
+    return `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${WEATHER_API}&units=metric`;
   };
 
-  getWeather(lat: number, long: number) {
-    return lastValueFrom(this.http.get((this.setUrl(lat, long))).pipe(map(res => res.data)));
+  getWeather(location) {
+    return lastValueFrom(this.http.get((this.setUrl(location))).pipe(map(res => res.data)));
   }
 }
