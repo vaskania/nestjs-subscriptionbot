@@ -9,6 +9,8 @@ import { BotService } from "./bot/bot.service";
 import { ScheduleModule } from "@nestjs/schedule";
 import { TasksService } from "./cron/cron.service";
 import { WeatherModule } from "./forecast/weather.module";
+import { WeatherService } from "./forecast/weather.service";
+import { HttpModule } from "@nestjs/axios";
 
 const DB = process.env.DB_URI;
 const TOKEN = process.env.TELEGRAM_API;
@@ -22,9 +24,10 @@ const TOKEN = process.env.TELEGRAM_API;
     DbModule,
     BotModule,
     ScheduleModule.forRoot(),
-    WeatherModule
+    WeatherModule,
+    HttpModule
   ],
-  providers: [BotService, BotController, TasksService]
+  providers: [BotService, BotController, TasksService, WeatherService]
 })
 export class AppModule {
 }

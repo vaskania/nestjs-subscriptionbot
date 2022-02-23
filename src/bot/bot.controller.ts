@@ -28,7 +28,6 @@ export class BotController {
   async setTime(ctx: Context) {
     try {
       await this.botService.setUserTime(ctx);
-
       await ctx.reply(`Time set at: ${ctx.update["message"].text}`);
     } catch (error) {
       await ctx.reply(error.message);
