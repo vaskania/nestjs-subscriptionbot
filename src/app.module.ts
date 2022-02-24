@@ -6,8 +6,6 @@ import { DbModule } from "./db/db.module";
 import { BotModule } from "./bot/bot.module";
 import { ScheduleModule } from "@nestjs/schedule";
 import { TasksService } from "./cron/cron.service";
-import { WeatherModule } from "./forecast/weather.module";
-import { HttpModule } from "@nestjs/axios";
 import { ConfigModule } from "@nestjs/config";
 import { BotController } from "./bot/bot.controller";
 
@@ -23,9 +21,7 @@ const TOKEN = process.env.TELEGRAM_API;
     }),
     DbModule,
     BotModule,
-    ScheduleModule.forRoot(),
-    WeatherModule,
-    HttpModule
+    ScheduleModule.forRoot()
   ],
   providers: [TasksService, BotController]
 
