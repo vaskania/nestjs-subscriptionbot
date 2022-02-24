@@ -21,7 +21,6 @@ export class BotService {
     const chatId = data.message.chat.id;
     const existUser = await this.userRepo.findByChatId(chatId);
     if (!existUser) await this.userRepo.addChatId(chatId);
-    return;
   }
 
   async setUserLocation(data): Promise<void> {

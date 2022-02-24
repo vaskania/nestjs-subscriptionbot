@@ -4,8 +4,7 @@ import { HttpModule } from "@nestjs/axios";
 import { WeatherService } from "../forecast/weather.service";
 
 @Module({
-  imports: [DbModule, HttpModule],
-  providers: [WeatherService]
+  imports: [DbModule, HttpModule]
 })
 export class BotModule {
 }
